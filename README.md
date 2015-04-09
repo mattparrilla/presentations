@@ -5,6 +5,6 @@ The format of these presentations may look a little strange, but that's because 
 For example:
 
     brew install pandoc
-    pandoc -t revealjs -s gulp.md -o gulp.html --slide-level 2
-
-That also depends on the presence of reveal.js, but I'll add that to the repository at some future point.
+    npm install -g gulp
+    npm install
+    gulp
