@@ -3,6 +3,17 @@
 % Scott Douglas and Michael Hellein
 
 
+- cheat sheet
+
+- frustrations
+-- happy path or totally obfuscated
+-- streaming end
+-- documentation
+
+- addy osmani grunt vs gulp
+-- configuration vs code
+
+
 ## What is Gulp?
 
 A nodejs build system based on streams.
