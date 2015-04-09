@@ -5,10 +5,15 @@
 
 - cheat sheet
 
+- https://speakerdeck.com/addyosmani/front-end-tooling-workflows
+
 - frustrations
 -- happy path or totally obfuscated
 -- streaming end
 -- documentation
+-- didn't make things simpler
+
+- warning: gulp 2.0
 
 - addy osmani grunt vs gulp
 -- configuration vs code
