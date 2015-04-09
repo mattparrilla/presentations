@@ -1,0 +1,17 @@
+@import "reveal.js/css/theme/night.css";
+
+.reveal pre {
+	background-color: #333;
+	margin-top: 2em;
+	padding: 1em;
+	font-size: 0.8em;
+}
+
+.reveal pre code {
+	background-color: transparent;
+}
+
+.reveal section.present img {
+	background: none;
+	border: 0;
+}

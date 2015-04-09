@@ -1,0 +1,22 @@
+{
+  "name": "presentations",
+  "version": "0.0.1",
+  "description": "A collection of presentations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.dev.dealertrack.com:ddcmichaelhellein/presentations.git"
+  },
+  "author": "Michael Hellein",
+  "license": "All rights reserved.",
+  "private": true,
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "gulp": "^3.8.11",
+    "lodash": "^3.6.0",
+    "reveal.js": "^3.0.0"
+  }
+}
