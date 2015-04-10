@@ -7,9 +7,8 @@
 
 A nodejs build system based on streams.
 
-<div class="speaker-notes">
-Test speaker note.
-</div>
+
+>> Test speaker note.
 
 
 # Do we need another build system?

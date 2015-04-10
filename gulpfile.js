@@ -28,6 +28,13 @@ function compile(done) {
 			$(this).attr('href', href.replace('reveal.min.css', 'reveal.css'));
 		});
 
+		// Magic speaker notes.
+		$('blockquote > blockquote').each(function(){
+			var content = $(this).html();
+			var $note = $('<aside class="notes">').html(content);
+			$(this).parent().replaceWith($note);
+		});
+
 		fs.writeFileSync(output, $.html());
 		done();
 	});
