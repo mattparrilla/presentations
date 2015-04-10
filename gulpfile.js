@@ -11,8 +11,6 @@ gulp.src(['!**/reveal.js/node_modules/**', '!**/reveal.js/test/**', 'node_module
 	.pipe(gulp.dest('present/reveal.js'));
 
 
-
-
 function compile(done) {
 	var output = 'present/'+presentation+'.html';
 	child_process.exec('pandoc -t revealjs -s '+presentation+'.md -o '+output+' --css custom-night.css --slide-level 2', function(){
@@ -41,7 +39,7 @@ function compile(done) {
 }
 
 gulp.task('css', function(){
-	return gulp.src('css/custom-night.css').pipe(gulp.dest('present'));
+	return gulp.src('css/*').pipe(gulp.dest('present'));
 });
 
 gulp.task('default', ['css'], compile);
