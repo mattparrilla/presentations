@@ -11,7 +11,11 @@
 	background-color: transparent;
 }
 
-.reveal section.present img {
+.reveal h2.author img {
+	height: 6em;
+}
+
+.reveal section h2.author img {
 	background: none;
 	border: 0;
 }

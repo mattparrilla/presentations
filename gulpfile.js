@@ -10,7 +10,7 @@ var presentation = 'gulp';
 gulp.src(['!**/reveal.js/node_modules/**', '!**/reveal.js/test/**', 'node_modules/reveal.js/**'])
 	.pipe(gulp.dest('present/reveal.js'));
 
-gulp.src('css/custom-night.css').pipe(gulp.dest('present'));
+
 
 
 function compile(done) {
@@ -33,9 +33,13 @@ function compile(done) {
 	});
 }
 
+gulp.task('css', function(){
+	return gulp.src('css/custom-night.css').pipe(gulp.dest('present'));
+});
 
-gulp.task('default', compile);
+gulp.task('default', ['css'], compile);
 
 gulp.task('watch', function(){
 	gulp.watch('*.md', ['default']);
+	gulp.watch('css/*', ['css'])
 });
