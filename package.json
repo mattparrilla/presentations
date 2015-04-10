@@ -4,6 +4,8 @@
   "description": "A collection of presentations.",
   "main": "index.js",
   "scripts": {
+    "gh-pages": "rsync --exclude .git -a present/ gh-pages/ && cd gh-pages && git add -A && git commit -m 'Update gh-pages.' && git push",
+    "gh-pages-init": "rm -rf gh-pages && git clone `git remote -v | head -n 1 | awk '{print $2}'` gh-pages && cd gh-pages && git checkout -b gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
