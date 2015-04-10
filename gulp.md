@@ -3,26 +3,9 @@
 % Scott Douglas and Michael Hellein
 
 
-- cheat sheet
-
-- https://speakerdeck.com/addyosmani/front-end-tooling-workflows
-
-- frustrations
--- happy path or totally obfuscated
--- streaming end
--- documentation
--- didn't make things simpler
-
-- warning: gulp 2.0
-
-- addy osmani grunt vs gulp
--- configuration vs code
-
-
 ## What is Gulp?
 
 A nodejs build system based on streams.
-
 
 <div class="speaker-notes">
 Test speaker note.
@@ -110,6 +93,29 @@ See <https://medium.com/@contrahacks/gulp-3828e8126466>
 <https://github.com/orchestrator/orchestrator>
 
 
+# Concepts
+
+---
+
+<script async class="speakerdeck-embed" data-slide="84" data-id="14273d704a650132ee711257f47f663a" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<https://speakerdeck.com/addyosmani/front-end-tooling-workflows?slide=84>
+
+
+# Cheat Sheet
+
+---
+
+![](https://raw.githubusercontent.com/osscafe/gulp-cheatsheet/master/images/en-js-p1.png)
+
+<https://github.com/osscafe/gulp-cheatsheet>
+
+---
+
+![](https://raw.githubusercontent.com/osscafe/gulp-cheatsheet/master/images/en-js-p2.png)
+
+<https://github.com/osscafe/gulp-cheatsheet>
+
 # Extensions
 
 ## gulp-changed
@@ -136,3 +142,12 @@ Incremental builds
         });
     });
 
+
+# Frustrations
+
+## happy path or totally obfuscated
+## streaming end (changed/concat)
+## documentation
+## didn't make things simpler
+
+# Warning: Gulp 2.0
