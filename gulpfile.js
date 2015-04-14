@@ -1,7 +1,10 @@
 var cheerio = require('cheerio');
 var child_process = require('child_process');
+var debug = require('gulp-debug');
 var fs = require('fs');
 var gulp = require('gulp');
+var rename = require('gulp-rename');
+var through = require('through2');
 
 
 var presentation = 'gulp';
@@ -11,10 +14,9 @@ gulp.src(['!**/reveal.js/node_modules/**', '!**/reveal.js/test/**', 'node_module
 	.pipe(gulp.dest('present/reveal.js'));
 
 
-function compile(done) {
-	var output = 'present/'+presentation+'.html';
-	child_process.exec('pandoc -t revealjs -s '+presentation+'.md -o '+output+' --css custom-night.css --slide-level 2', function(){
-		var $ = cheerio.load(fs.readFileSync(output));
+function pandoc(file, enc, cb) {
+	child_process.exec('pandoc -t revealjs -s '+file.path+' --css custom-night.css --slide-level 2', function(error, stdout, stderr){
+		var $ = cheerio.load(stdout);
 
 		// Because we're getting reveal from npm, we don't have .min.
 		$('script[src]').each(function(){
@@ -33,9 +35,17 @@ function compile(done) {
 			$(this).parent().replaceWith($note);
 		});
 
-		fs.writeFileSync(output, $.html());
-		done();
+		file.contents = new Buffer($.html());
+		cb(null, file);
 	});
+}
+
+function compile(done) {
+	return gulp.src(['!README.md', '*.md'])
+		.pipe(through.obj(pandoc))
+		.pipe(rename({extname: ".html"}))
+		.pipe(gulp.dest('./present'))
+		.pipe(debug({title: 'Compiled'}));
 }
 
 gulp.task('css', function(){
