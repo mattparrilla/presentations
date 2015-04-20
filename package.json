@@ -21,7 +21,6 @@
     "gulp-debug": "^2.0.1",
     "gulp-rename": "^1.2.2",
     "lodash": "^3.6.0",
-    "reveal.js": "^3.0.0",
     "through2": "^0.6.5"
   }
 }

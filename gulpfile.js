@@ -10,27 +10,20 @@ var through = require('through2');
 var presentation = 'gulp';
 
 
-gulp.src(['!**/reveal.js/node_modules/**', '!**/reveal.js/test/**', 'node_modules/reveal.js/**'])
-	.pipe(gulp.dest('present/reveal.js'));
-
-
 function pandoc(file, enc, cb) {
 	child_process.exec('pandoc -t revealjs -s '+file.path+' --css custom-night.css --slide-level 2', function(error, stdout, stderr){
+		// Use CDN for reveal.js.
+		stdout = stdout.replace(new RegExp('reveal.js/', 'g'), 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/');
+
 		var $ = cheerio.load(stdout);
 
-		// Because we're getting reveal from npm, we don't have .min.
-		$('script[src]').each(function(){
-			var src = $(this).attr('src');
-			$(this)
-				.attr('src', src.replace('reveal.min.js', 'reveal.js'))
-				.after('<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>');
-		});
-		$('link[rel=stylesheet]').each(function(){
-			var href = $(this).attr('href');
-			$(this)
-				.attr('href', href.replace('reveal.min.css', 'reveal.css'))
-				.after('<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet" />');
-		});
+		// Add highlight.js.
+		$('script[src]')
+			.last()
+			.after('<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>');
+		$('link[rel=stylesheet]')
+			.last()
+			.after('<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet" />');
 
 		// Magic speaker notes.
 		$('blockquote > blockquote').each(function(){

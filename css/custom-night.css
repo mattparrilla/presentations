@@ -1,4 +1,4 @@
-@import "reveal.js/css/theme/night.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/theme/night.css";
 
 .reveal pre {
 	background-color: #333;
