@@ -1,5 +1,6 @@
 % Mithril and Webpack
 % Michael Hellein
+% [Doc](https://github.dev.dealertrack.com/ddcmichaelhellein/presentations/blob/master/source/mithril-webpack.md) / [Presentation](https://github.dev.dealertrack.com/pages/ddcmichaelhellein/presentations/mithril-webpack.html#/)
 
 
 # Why are we here?
@@ -253,13 +254,245 @@ index.js:
 var m = require('mithril');
 ```
 
-## 
+## MVC
 
+Mithril is an MVC, but its parts are just POJOs.
+
+---
+
+### View
+
+```js
+m.mount(document.body, {
+  view: function() {
+    return m('p', 'Hello.');
+  }
+});
+```
+
+**m.mount()** attaches a Mithril component to the DOM. **m()** is the Virtual DOM builder.
+
+> > m() is very close to React.createElement(). Some people even like to alias [React.createElement to h](http://ludovf.net/reactbook/blog/reactjs-without-jsx-part2.html).
+
+---
+
+### Controller
+
+```js
+m.mount(document.body, {
+  controller: function() {
+    return {
+      num: 1
+    }
+  },
+  view: function(controller) {
+    return m('p', ['Hello.', controller.num]);
+  }
+});
+```
+
+---
+
+### Model
+
+```js
+
+var Nums = {
+  awesomeNum: 1
+};
+
+m.mount(document.body, {
+  controller: function() {
+    return {
+      num: Nums.awesomeNum
+    }
+  },
+  view: function(controller) {
+    return m('p', ['Hello.', controller.num]);
+  }
+});
+```
+
+## Data Changes
+
+```js
+  controller: function() {
+    return {
+      num: Nums.awesomeNum,
+      add: function() {
+        Nums.awesomeNum = Nums.awesomeNum + 1;
+      }
+    }
+  },
+  view: function(controller) {
+    return m('p', {onclick: controller.add}, 
+      ['Hello.', controller.num]);
+  }
+```
+
+---
+
+### Not Quite!
+
+By itself, that doesn't work. Mithril uses a getter/setter factory to register changes that affect the Virtual DOM.
+
+## m.prop()
+
+```js
+
+var Nums = {
+  awesomeNum: m.prop(1)
+};
+
+m.mount(document.body, {
+  controller: function() {
+    return {
+      num: Nums.awesomeNum,
+      add: function() {
+        Nums.awesomeNum(Nums.awesomeNum() + 1);
+      }
+    }
+  },
+  view: function(controller) {
+    return m('p', {onclick: controller.add}, 
+      ['Hello.', controller.num()]);
+  }
+});
+```
+
+## Changes from outside Mithril
+
+```js
+setInterval(function(){
+  Nums.awesomeNum(Nums.awesomeNum() - 1);
+}, 1000);
+```
+
+That only updates when we click the p. What gives?
+
+## computation
+
+**m.prop()** lets Mithril know what changed, but not when it changed. Mithril wraps Virtual DOM events in **m.startComputation()** and **m.endComputation()** to manage an internal counter.
+
+```js
+setInterval(function(){
+  m.startComputation();
+  Nums.awesomeNum(Nums.awesomeNum() - 1);
+  m.endComputation();
+}, 1000);
+```
+
+When the counter is 0, a redraw happens.
+
+## Application Framework Bits
+
+Mithril doesn't come with many bells and whistles. There are a few things that are pretty usefult.
+
+---
+
+### m.request()
+
+Manages HTTP requests (wrapped in **m.startComputation()** and **m.endComputation()**).
+
+```js
+m.mount(document.body, {
+  controller: function() {
+    return {
+      posts: m.request({method: "GET", url: "http://jsonplaceholder.typicode.com/posts"})
+    }
+  },
+  view: function(controller) {
+    return m('ul', controller.posts().map(function(post){
+      return m('li', [m('h3', post.title), m('p', post.body)]);
+    }));
+  }
+});
+```
+
+---
+
+### m.route()
+
+a.js:
+```js
+module.exports = {
+  view: function() { return m('p.awesome', 'Component A.') }
+}
+```
+
+index.js:
+```js
+m.route(document.body, '/a', {
+  '/a-url': require('./a'),
+  '/b-url': require('./b')
+});
+```
+
+## Pre-compilation
+
+Templates can be even faster, if they're [pre-compiled](http://lhorie.github.io/mithril/optimizing-performance.html#compiling-templates) as a build step.
+
+```js
+var view = function() {
+    return m("a", {href: "http://google.com"}, "test");
+}
+```
+->
+```js
+var view = function() {
+    return {tag: "a", attrs: {href: "http://google.com"}, children: "test"};
+}
+```
+
+## Server Rendering
+
+The [mithril-node-render](https://github.com/StephanHoyer/mithril-node-render) project lets us render Mithril components from Node.
+
+```bash
+npm install mithril-node-render
+```
+
+```js
+var m = require('mithril');
+var render = require('mithril-node-render');
+
+console.log(render(require('./a')));
+```
+
+```bash
+$ node node.js 
+<p class="awesome">Component A.</p>
+```
+
+> > Access to http resources via m.request() should be stubbed in webpack to use Node.
+
+
+## Mithril is tiny
+
+### 7.3K min and gzip
+
+Size (still) matters!
+
+
+## Mithril is fast
+
+![](mithril-webpack/benchmarks.png)
+
+[Benchmarks](http://lhorie.github.io/mithril/benchmarks.html)
+
+## Mithril keeps us close to plain JavaScript
+
+And that's a good thing!
 
 
 # References
 
 ##
 
-<http://webpack.github.io/docs/>
-<http://lhorie.github.io/mithril/index.html>
+- <http://webpack.github.io/docs/>
+- <http://lhorie.github.io/mithril/index.html>
+- [Getting Started with Webpack notes](https://github.dev.dealertrack.com/gist/ddcmichaelhellein/6ddae5176cc7e1734473)
+- [Getting Started with Mithril notes](https://github.dev.dealertrack.com/gist/ddcmichaelhellein/ded16f360126a5bebc6f)
+
+
+# Thanks!
