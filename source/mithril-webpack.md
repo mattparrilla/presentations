@@ -20,7 +20,7 @@ var something = require('./something.js');
 
 ## Mithril
 
-Mithril is a lightweight client-side MVC framework. Like React, it has one-way data flows and a virtual DOM diffing.
+Mithril is a lightweight client-side MVC framework. Like React, it has one-way data flows and virtual DOM diffing.
 
 ```js
 var m = require('mithril');
@@ -318,7 +318,9 @@ m.mount(document.body, {
 ```js
   controller: function() {
     return {
-      num: Nums.awesomeNum,
+      num: function() {
+        return Nums.awesomeNum
+      },
       add: function() {
         Nums.awesomeNum = Nums.awesomeNum + 1;
       }
@@ -326,15 +328,9 @@ m.mount(document.body, {
   },
   view: function(controller) {
     return m('p', {onclick: controller.add}, 
-      ['Hello.', controller.num]);
+      ['Hello.', controller.num()]);
   }
 ```
-
----
-
-### Not Quite!
-
-By itself, that doesn't work. Mithril uses a getter/setter factory to register changes that affect the Virtual DOM.
 
 ## m.prop()
 
@@ -372,7 +368,7 @@ That only updates when we click the p. What gives?
 
 ## computation
 
-**m.prop()** lets Mithril know what changed, but not when it changed. Mithril wraps Virtual DOM events in **m.startComputation()** and **m.endComputation()** to manage an internal counter.
+Mithril needs to know something has changed. Mithril wraps Virtual DOM events in **m.startComputation()** and **m.endComputation()** to manage an internal counter.
 
 ```js
 setInterval(function(){
@@ -422,7 +418,7 @@ module.exports = {
 
 index.js:
 ```js
-m.route(document.body, '/a', {
+m.route(document.body, '/a-url', {
   '/a-url': require('./a'),
   '/b-url': require('./b')
 });
@@ -476,7 +472,7 @@ Size (still) matters!
 
 ## Mithril is fast
 
-![](mithril-webpack/benchmarks.png)
+![](images/mithril-webpack/benchmarks.png)
 
 [Benchmarks](http://lhorie.github.io/mithril/benchmarks.html)
 
@@ -484,6 +480,11 @@ Size (still) matters!
 
 And that's a good thing!
 
+# Next Steps
+
+## Immutable.js
+
+## Server-side data access
 
 # References
 
