@@ -68,6 +68,8 @@ module.exports = {
 };
 ```
 
+> > git:c91201c
+
 ## Install
 
 ```bash
@@ -106,6 +108,8 @@ a.js
 ```js
 console.log('a here');
 ```
+
+> > git:efda626
 
 ---
 
@@ -147,6 +151,8 @@ var Immutable = require('immutable');
 
 Yep, just like Browserify...
 
+> > git:25e9d40
+
 
 ## Let's use a loader
 
@@ -165,6 +171,9 @@ module.exports = {
 };
 ```
 
+> > git:83dbf0d
+
+
 ---
 
 Now when we `require('./something.css');` we'll get those styles inlined into our JavaScript bundle.
@@ -182,6 +191,9 @@ require('purecss');
 ```
 
 Because purecss has a CSS file as `main` in its `package.json`.
+
+> > git:818ce8b
+
 
 ## Commons Chunk
 
@@ -254,6 +266,8 @@ index.js:
 var m = require('mithril');
 ```
 
+> > git:b3ec643
+
 ## MVC
 
 Mithril is an MVC, but its parts are just POJOs.
@@ -272,7 +286,9 @@ m.mount(document.body, {
 
 **m.mount()** attaches a Mithril component to the DOM. **m()** is the Virtual DOM builder.
 
+> > git:91b0aee
 > > m() is very close to React.createElement(). Some people even like to alias [React.createElement to h](http://ludovf.net/reactbook/blog/reactjs-without-jsx-part2.html).
+
 
 ---
 
@@ -290,6 +306,8 @@ m.mount(document.body, {
   }
 });
 ```
+
+> > git:44d59c7
 
 ---
 
@@ -313,6 +331,8 @@ m.mount(document.body, {
 });
 ```
 
+> > git:c9c8007
+
 ## Data Changes
 
 ```js
@@ -331,6 +351,8 @@ m.mount(document.body, {
       ['Hello.', controller.num()]);
   }
 ```
+
+> > git:74f400e
 
 ## m.prop()
 
@@ -356,6 +378,8 @@ m.mount(document.body, {
 });
 ```
 
+> > git:2326c61
+
 ## Changes from outside Mithril
 
 ```js
@@ -365,6 +389,8 @@ setInterval(function(){
 ```
 
 That only updates when we click the p. What gives?
+
+> > git:b9b636f
 
 ## computation
 
@@ -379,6 +405,8 @@ setInterval(function(){
 ```
 
 When the counter is 0, a redraw happens.
+
+> > git:db560e8
 
 ## Application Framework Bits
 
@@ -405,6 +433,8 @@ m.mount(document.body, {
 });
 ```
 
+> > git:7bf3dd7
+
 ---
 
 ### m.route()
@@ -423,6 +453,8 @@ m.route(document.body, '/a-url', {
   '/b-url': require('./b')
 });
 ```
+
+> > git:2a06653
 
 ## Pre-compilation
 
@@ -460,8 +492,8 @@ $ node node.js
 <p class="awesome">Component A.</p>
 ```
 
+> > git:b4e22a4
 > > Access to http resources via m.request() should be stubbed in webpack to use Node.
-
 
 ## Mithril is tiny
 
