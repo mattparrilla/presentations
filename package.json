@@ -22,5 +22,8 @@
     "gulp-rename": "^1.2.2",
     "lodash": "^3.6.0",
     "through2": "^0.6.5"
+  },
+  "devDependencies": {
+    "reveal.js": "^3.1.0"
   }
 }
