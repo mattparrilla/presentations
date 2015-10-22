@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="">
+  <title>React + Flux + Webpack =</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="css/custom-night.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet">
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">React + Flux + Webpack =</h1>
+    <h2 class="author"><img src="http://i.imgur.com/1dHHZw4.gif" alt=""></h2>
+    <h3 class="date"></h3>
+</section>
+
+<section><section id="what-is-react" class="titleslide slide level1"><h1>What is React?</h1></section><section id="a-library-for-creating-user-interfaces" class="slide level2">
+<h1>A library for creating user interfaces</h1>
+<p>AKA: the &quot;V&quot; in MVC</p>
+</section><section id="what-is-it-not" class="slide level2">
+<h1>What is it not?</h1>
+<figure>
+<img src="http://thesalesblog.com/wp-content/uploads/2010/06/Kitchen-Sink.jpg" alt="">
+</figure>
+</section><section id="byo" class="slide level2">
+<h1>BYO</h1>
+<ul>
+<li class="fragment">AJAX library</li>
+<li class="fragment">localization</li>
+<li class="fragment">etc.</li>
+</ul>
+</section><section id="how-does-it-work" class="slide level2">
+<h1>How does it work?</h1>
+<figure>
+<img src="http://i.imgur.com/BYK8D6u.png" alt="">
+</figure>
+</section><section id="but-what-about-the-m-and-c" class="slide level2">
+<h1>But what about the &quot;M&quot; and &quot;C&quot;?</h1>
+</section></section>
+<section><section id="what-the-flux" class="titleslide slide level1"><h1>What the Flux?</h1></section><section id="all-about-managing-state" class="slide level2">
+<h1>All about managing state</h1>
+</section><section id="section" class="slide level2">
+<h1><img src="https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png" alt=""></h1>
+<ul>
+<li class="fragment">All application state lives in the store</li>
+<li class="fragment">One-way data flow (no two-way binding)</li>
+</ul>
+</section><section id="but-flux-is-a-pattern-not-a-library" class="slide level2">
+<h1>But flux is a pattern, not a library</h1>
+</section></section>
+<section><section id="enter-redux" class="titleslide slide level1"><h1>Enter: Redux</h1></section><section id="an-implementation-of-flux" class="slide level2">
+<h1>An implementation of Flux</h1>
+<ul>
+<li class="fragment">All state is stored in an object inside of a single store</li>
+<li class="fragment">The only way to change state is to emit an action</li>
+<li class="fragment">Actions are queued and can be replayed</li>
+<li class="fragment">To specify how actions transform state, you write pure reducers.</li>
+</ul>
+</section><section id="an-action" class="slide level2">
+<h1>An Action</h1>
+<pre><code>function updateComparisonRange(newRange) {
+    return {
+        type: UPDATE_COMPARISON_RANGE,
+        data: {
+            comparisonDateRangeType: newRange
+        }
+    };
+}</code></pre>
+</section><section id="a-reducer" class="slide level2">
+<h1>A Reducer</h1>
+<pre><code>function reducer(state = {
+    startDate,
+    endDate,
+    comparisonDateRangeType
+}, action) {
+    if (action.type === UPDATE_COMPARISON_RANGE) {
+        return Object.assign({}, state, {
+            comparisonDateRangeType: action.data.comparisonDateRangeType
+        });
+    } else {
+      return state;
+    }
+})</code></pre>
+</section><section id="state-action-state" class="slide level2">
+<h1>(state, action) =&gt; state</h1>
+</section><section id="accum-item-accum" class="slide level2">
+<h1>(accum, item) =&gt; accum</h1>
+</section></section>
+<section><section id="what-is-webpack" class="titleslide slide level1"><h1>What is Webpack?</h1></section><section id="a-module-bundler" class="slide level2">
+<h1>A module bundler</h1>
+<blockquote>
+<p>It&apos;s like browserify but can split your app into multiple files. If you have multiple pages in a single-page app, the user only downloads code for just that page. If they go to another page, they don&apos;t redownload common code.</p>
+</blockquote>
+</section><section id="what-else" class="slide level2">
+<h1>What else?</h1>
+<ul>
+<li class="fragment">Loaders (ESLint! Babel!)</li>
+<li class="fragment">HTML Templating</li>
+<li class="fragment">Hot reloading</li>
+<li class="fragment">Most Gulp Tasks</li>
+</ul>
+</section></section>
+<section><section id="so-what" class="titleslide slide level1"><h1>So What?</h1></section><section id="the-good" class="slide level2">
+<h1>The Good</h1>
+<ul>
+<li class="fragment">Having all your state in one place makes it easy to reason about</li>
+<li class="fragment">Less code &amp; less complexity</li>
+<li class="fragment">BYO library pattern decouples you from framework</li>
+<li class="fragment">Module pattern allows for code sharing across organization</li>
+<li class="fragment">Functional Programming! ...if you&apos;re into that sort of thing</li>
+<li class="fragment">Component logic and templates in one place</li>
+<li class="fragment">VirtualDOM performance gains</li>
+</ul>
+</section><section id="the-bad" class="slide level2">
+<h1>The Bad</h1>
+<ul>
+<li class="fragment">BYO library pattern means more decisions need to be made</li>
+<li class="fragment">Module pattern can lead to greater diversity of JS libraries</li>
+<li class="fragment">Functional Programming! ...if you hate that sort of thing</li>
+<li class="fragment">We&apos;re already using Angular</li>
+<li class="fragment">Doesn&apos;t like libraries that touch the DOM</li>
+<li class="fragment">Haven&apos;t figured out source maps (yet)</li>
+</ul>
+</section></section>
+<section><section id="what-does-all-of-this-look-like" class="titleslide slide level1"><h1>What Does All Of This Look Like?</h1></section><section id="section-1" class="slide level2">
+<h1></h1>
+<ul>
+<li><a href="https://github.dev.dealertrack.com/Analytics/react-prototype#application-structure">Project Structure</a></li>
+<li><a href="https://github.dev.dealertrack.com/Analytics/react-prototype/blob/master/webpack.config.js">webpack.config.js</a></li>
+<li><a href="https://github.dev.dealertrack.com/Analytics/react-prototype/blob/master/src/reports/content-details/Report.jsx">Report.jsx (our &quot;smart&quot; component)</a></li>
+<li><a href="https://github.dev.dealertrack.com/Analytics/react-prototype/blob/master/src/components/charts/AreaChart/index.jsx">Area Chart (a &quot;dumb&quot; component)</a></li>
+<li><a href="https://github.dev.dealertrack.com/Analytics/react-prototype/blob/master/src/reports/content-details/actions.js">actions.js</a></li>
+<li><a href="https://github.dev.dealertrack.com/Analytics/react-prototype/blob/master/src/reports/content-details/store.js">store.js</a></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/js/reveal.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,         // Display controls in the bottom right corner
+        progress: true,         // Display a presentation progress bar
+        history: true,          // Push each slide change to the browser history
+        center: true,                       // Vertical centering of slides
+        maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
+        slideNumber: false,                // Display the page number of the current slide
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.17/socket.io.js', async: true }, { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/notes-server/client.js', async: true }]});
+    </script>
+    </body>
+</html>
