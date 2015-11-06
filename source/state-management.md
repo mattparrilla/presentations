@@ -63,3 +63,6 @@ function reducer(state = {
 > * Useful error reporting
 > * Immutable data in JS?
 > * Redux is only 99 lines (without sanity checks)
+
+#Questions?
+![](https://media.giphy.com/media/zjQrmdlR9ZCM/giphy.gif)
