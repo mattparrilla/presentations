@@ -41,26 +41,32 @@
 </section><section id="section" class="slide level2">
 <h1><img src="https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png" alt=""></h1>
 <ul>
-<li class="fragment">All application state lives in the store</li>
-<li class="fragment">One-way data flow (no two-way binding)</li>
+<li>All application state lives in the store</li>
+<li>One-way data flow (no two-way binding)</li>
+<li>View only updates when store says so</li>
 </ul>
 </section><section id="but-flux-is-a-pattern-not-a-library" class="slide level2">
 <h1>But flux is a pattern, not a library</h1>
 </section></section>
-<section><section id="enter-redux" class="titleslide slide level1"><h1>Enter Redux?</h1></section><section id="an-implementation-of-flux" class="slide level2">
-<h1>An implementation of Flux</h1>
+<section><section id="enter-redux" class="titleslide slide level1"><h1>Enter Redux!</h1></section><section id="section-1" class="slide level2">
+<h1></h1>
 <ul>
 <li class="fragment">All state is stored in an object inside of a single store</li>
 <li class="fragment">The only way to change state is to emit an action</li>
 <li class="fragment">Actions are queued and can be replayed</li>
-<li class="fragment">To specify how actions transform state, you write pure reducers.</li>
+<li class="fragment">To specify how actions transform state, you write pure reducers</li>
+<li class="fragment">No dispatcher</li>
 </ul>
+</section><section id="state-action-state" class="slide level2">
+<h1>(state, action) =&gt; state</h1>
+</section><section id="accum-item-accum" class="slide level2">
+<h1>(accum, item) =&gt; accum</h1>
 </section><section id="an-action" class="slide level2">
 <h1>An Action</h1>
 <pre><code>function updateComparisonRange(comparisonRange) {
     return {
         type: UPDATE_COMPARISON_RANGE,
-        comparisonRange // ES2015 property assignment
+        comparisonRange
     };
 }</code></pre>
 </section><section id="a-reducer" class="slide level2">
@@ -78,10 +84,6 @@
       return state;
     }
 })</code></pre>
-</section><section id="state-action-state" class="slide level2">
-<h1>(state, action) =&gt; state</h1>
-</section><section id="accum-item-accum" class="slide level2">
-<h1>(accum, item) =&gt; accum</h1>
 </section><section id="so-what" class="slide level2">
 <h1>So what?</h1>
 <ul>
@@ -90,6 +92,7 @@
 <li class="fragment">Hot reloading</li>
 <li class="fragment">Useful error reporting</li>
 <li class="fragment">Immutable data in JS?</li>
+<li class="fragment">Redux is only 99 lines (without sanity checks)</li>
 </ul>
 </section></section>
     </div>
