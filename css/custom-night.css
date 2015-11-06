@@ -1,33 +1,37 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/theme/night.css";
 
+.reveal h1 {
+    font-size: 3em;
+}
+
 .reveal pre {
-	background-color: #333;
-	margin-top: 2em;
-	padding: 1em;
-	font-size: 0.8em;
+    background-color: #333;
+    margin-top: 2em;
+    padding: 1em;
+    font-size: 0.8em;
 }
 
 .reveal code {
-	background-color: #333;
-	border-radius: 3px;
-	padding: 3px 6px 0;
-	display: inline-block;
+    background-color: #333;
+    border-radius: 3px;
+    padding: 3px 6px 0;
+    display: inline-block;
 }
 
 .reveal pre code {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .reveal h2.author {
-	color: #999;
-	margin-bottom: 0.5em;
+    color: #999;
+    margin-bottom: 0.5em;
 }
 
 .reveal h2.author img {
-	height: 6em;
+    height: 6em;
 }
 
 .reveal section h2.author img {
-	background: none;
-	border: 0;
+    background: none;
+    border: 0;
 }
