@@ -57,7 +57,7 @@ function reducer(state = {
 
 ##So what?
 
-> * conceptually simple (single state tree FTW!!)
+> * Conceptually simple
 > * Undo/redo
 > * Hot reloading
 > * Useful error reporting
