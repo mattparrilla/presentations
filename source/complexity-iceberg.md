@@ -53,11 +53,11 @@
 
 > * Hidden input
 > * "A function with side-causes has undocumented assumptions about what *external* factors it depends on."
-> * What does it need that isn't in the argument list
+> * What does it need that isn't in the argument list?
 
 ## Referential Transparency
 
-A pure, function can be replaced by the value it returns.
+A pure function can be replaced by the value it returns.
 
 >> referential transparency means that functional programs can be analyzed and evaluated as mathematics, and in true functional languages they can be optimized at compile time.
 
@@ -88,7 +88,7 @@ A pure, function can be replaced by the value it returns.
 
 ---
 
-Some array methods can cause unexpected side effects if you don't know that they modify in place.
+Some array methods can cause unexpected side-effects if you don't know that they modify the array in place.
 
     const x = [1, 2, 3];
     const y = x.push(1);
