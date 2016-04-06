@@ -167,6 +167,7 @@ Some array methods can cause unexpected side-effects if you don't know that they
 > * Initial learning curve
 > * Discipline
 > * Flexibility
+> * Can result in more memory usage
 > * Missing anything?
 
 >> am I missing anything?
