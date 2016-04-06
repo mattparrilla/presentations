@@ -132,6 +132,7 @@ Some array methods can cause unexpected side-effects if you don't know that they
 ## Is this pure?
 
     import moment from 'moment';
+
     const today = moment(), visits = {...};
 
     function getYearAgoVisits(visits, date) {
