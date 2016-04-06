@@ -286,8 +286,8 @@ Part of ES2017
 
     const x = Immutable.List([1, 2, 3])
 
-> * Because we can't mutate x, we know if that reference still exists, x hasn't changed
-> * This costs the same regardless of size
+> * Because we can't mutate x, if that reference still exists, x hasn't changed
+> * Comparisons now cost the same regardless of size
 
 ## How it's used in the wild
 

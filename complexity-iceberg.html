@@ -344,8 +344,8 @@ console.log(y); // { a: 1, b: 2, c: [5, 2, 3]}</code></pre>
 <h1>With an immutable array</h1>
 <pre><code>const x = Immutable.List([1, 2, 3])</code></pre>
 <ul>
-<li class="fragment">Because we can&apos;t mutate x, we know if that reference still exists, x hasn&apos;t changed</li>
-<li class="fragment">This costs the same regardless of size</li>
+<li class="fragment">Because we can&apos;t mutate x, if that reference still exists, x hasn&apos;t changed</li>
+<li class="fragment">Comparisons now cost the same regardless of size</li>
 </ul>
 </section><section id="how-its-used-in-the-wild" class="slide level2">
 <h1>How it&apos;s used in the wild</h1>
