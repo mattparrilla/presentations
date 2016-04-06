@@ -164,9 +164,9 @@ Some array methods can cause unexpected side-effects if you don't know that they
 
 ## What do they cost?
 
-> * More time up-front
-> * Flexibility
+> * Initial learning curve
 > * Discipline
+> * Flexibility
 > * Missing anything?
 
 >> am I missing anything?
