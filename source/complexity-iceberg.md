@@ -54,16 +54,17 @@
 
     const hourlyVisits = [100, 200, 300];
 
-    function hourlyVisitRate(dailyVisits) {
-        const sum = dailyVisits.reduce((total, hourly) => total + hourly);
-        const hourly = dailyVisits.pop();
+    function visitDiffFromAvg(visits) {
+        const sum = visits.reduce((t, h) => t + h);
+        const hours = visits.length;
+        const latest = visits.pop();
 
-        return hourly / sum;
+        return hourly - (hours / sum);
     };
 
     // elsewhere...
-    const recentVisitsPercentage = hourlyVisitRate(hourlyVisits);
-    const peakVisits = Math.max(...hourlyVisits); // 200!
+    const diffFromDailyAvg = visitDiffFromAvg(hourlyVisits);
+    const dailyPeakVisits = Math.max(...hourlyVisits); // 200!
 
 ## Side-Cause
 

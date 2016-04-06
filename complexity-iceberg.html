@@ -88,16 +88,17 @@
 <h1>An Example</h1>
 <pre><code>const hourlyVisits = [100, 200, 300];
 
-function hourlyVisitRate(dailyVisits) {
-    const sum = dailyVisits.reduce((total, hourly) =&gt; total + hourly);
-    const hourly = dailyVisits.pop();
+function visitDiffFromAvg(visits) {
+    const sum = visits.reduce((t, h) =&gt; t + h);
+    const hours = visits.length;
+    const latest = visits.pop();
 
-    return hourly / sum;
+    return hourly - (hours / sum);
 };
 
 // elsewhere...
-const recentVisitsPercentage = hourlyVisitRate(hourlyVisits);
-const peakVisits = Math.max(...hourlyVisits); // 200!</code></pre>
+const diffFromDailyAvg = visitDiffFromAvg(hourlyVisits);
+const dailyPeakVisits = Math.max(...hourlyVisits); // 200!</code></pre>
 </section><section id="side-cause" class="slide level2">
 <h1>Side-Cause</h1>
 <ul>
