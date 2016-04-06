@@ -10,8 +10,8 @@
 
 ## What is Functional Programming?
 
-> * A pattern
-> * Seeks to eliminate *side-effects* when possible and isolate them when not
+> * A paradigm
+> * Seeks to eliminate *side-effects* when possible
 > * Declarative as opposed to imperative in style
 > * Rooted in mathematics (Lambda Calculus)
 > * Favors composability
@@ -40,8 +40,9 @@
 
 > * Hidden output
 > * An observable interaction with the outside world
-> * This is a bad thing ...usually
 > * What does it do that isn't part of the return value?
+> * Necessary to **do** things
+> * ...but dangerous when unintentional
 
 >> by "hidden output" we mean that a function does something besides provide a new return value. Maybe it changes some global state.
 >> When to side effect: when you are doing it deliberately. If you are returning a value AND side effecting, you're not following SRP. If you're going to side effect, do it intentionally.
@@ -76,7 +77,7 @@ A pure, function can be replaced by the value it returns.
     const someValue = someFunction(myGlobalArray);
     const sum = myGlobalArray.reduce((a, b) => a + b); // 2!
 
-## Another Side-Effect
+## Another
 
     function doStuff(anObject) {
         var keys = Object.keys(anObject);
@@ -87,6 +88,8 @@ A pure, function can be replaced by the value it returns.
 
 ---
 
+Some array methods can cause unexpected side effects if you don't know that they modify in place.
+
     const x = [1, 2, 3];
     const y = x.push(1);
     console.log(x); // [1, 2, 3, 1]
@@ -94,7 +97,6 @@ A pure, function can be replaced by the value it returns.
     const z = x.sort();
     console.log(x); // [1, 1, 2, 3]
 
-Some array methods can cause unexpected side effects if you don't know that they modify in place.
 
 >> It doesn't matter that we're creating a new reference, these array methods modify the original array in place.
 >> The new reference just points to the reference, which has new values.
@@ -224,6 +226,7 @@ Part of ES2017
 ## Benefits of immutability
 
 > * "Like mutable data, but with one fewer feature: you can't edit it."
+> * Often, we only need to read values
 > * Protect your data from side effects
 > * Cheap equality comparison
 
@@ -295,14 +298,14 @@ But you can deeply convert using both Object.freeze and any of the libraries
 
 > * If the reference is equal, no need to render.
 > * You are guaranteed the data is the same.
-> * Memoization too! // Is this correct?
+> * Memoization
 
 # So, how to write more functional code?
 
 ##
 
 > * Declare all inputs
-> * Be hostile to side-effects
+> * Be explicit about side-effects
 > * Don't mutate your data
 > * Better: use immutable data
 > * Listen to Ben!
