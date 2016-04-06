@@ -39,7 +39,6 @@
 ## Side-Effect
 
 > * Hidden output
-> * An observable interaction with the outside world
 > * What does it do that isn't part of the return value?
 > * Side effects are necessary to **do** things
 > * ...but dangerous when unintentional
