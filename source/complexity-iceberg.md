@@ -59,12 +59,12 @@
         const hours = visits.length;
         const latest = visits.pop();
 
-        return hourly - (hours / sum);
+        return latest - (hours / sum);
     };
 
     // elsewhere...
     const diffFromDailyAvg = visitDiffFromAvg(hourlyVisits);
-    const dailyPeakVisits = Math.max(...hourlyVisits); // 200!
+    const dailyPeakVisits = Math.max(...hourlyVisits); // 200
 
 ## Side-Cause
 

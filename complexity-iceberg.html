@@ -93,12 +93,12 @@ function visitDiffFromAvg(visits) {
     const hours = visits.length;
     const latest = visits.pop();
 
-    return hourly - (hours / sum);
+    return latest - (hours / sum);
 };
 
 // elsewhere...
 const diffFromDailyAvg = visitDiffFromAvg(hourlyVisits);
-const dailyPeakVisits = Math.max(...hourlyVisits); // 200!</code></pre>
+const dailyPeakVisits = Math.max(...hourlyVisits); // 200</code></pre>
 </section><section id="side-cause" class="slide level2">
 <h1>Side-Cause</h1>
 <ul>
