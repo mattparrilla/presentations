@@ -93,7 +93,7 @@ function visitDiffFromAvg(visits) {
     const hours = visits.length;
     const latest = visits.pop();
 
-    return latest - (hours / sum);
+    return latest - (sum / hours);
 };
 
 // elsewhere...
@@ -124,9 +124,9 @@ function getTodaysVisits(visits) {
 </section></section>
 <section><section id="some-more-examples" class="titleslide slide level1"><h1>Some More Examples</h1></section><section id="another-side-effect" class="slide level2">
 <h1>Another Side Effect</h1>
-<pre><code>function doStuff(anObject) {
-    var keys = Object.keys(anObject);
-    cleanKeys(keys);
+<pre><code>function cleanResponseKeys(response) {
+    const keys = Object.keys(response);
+    process(response);
 
     return keys.filter(item =&gt; name !== &apos;Matt&apos;);
 }</code></pre>

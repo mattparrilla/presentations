@@ -59,7 +59,7 @@
         const hours = visits.length;
         const latest = visits.pop();
 
-        return latest - (hours / sum);
+        return latest - (sum / hours);
     };
 
     // elsewhere...
@@ -92,9 +92,9 @@ A pure function can be replaced by the value it returns.
 
 ## Another Side Effect
 
-    function doStuff(anObject) {
-        var keys = Object.keys(anObject);
-        cleanKeys(keys);
+    function cleanResponseKeys(response) {
+        const keys = Object.keys(response);
+        process(response);
 
         return keys.filter(item => name !== 'Matt');
     }
