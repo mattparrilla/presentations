@@ -114,7 +114,7 @@ Some array methods can cause unexpected side-effects if you don't know that they
 | splice | filter |
 | unshift | reduce |
 
-[Array Methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods)
+[MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods)
 
 ## A Side-Cause
 
@@ -226,7 +226,7 @@ Part of ES2017
 ## Benefits of immutability
 
 > * "Like mutable data, but with one fewer feature: you can't edit it."
-> * Often, we only need to read values
+> * We often only need to read values
 > * Protect your data from side effects
 > * Cheap equality comparison
 
@@ -262,8 +262,6 @@ Part of ES2017
 
 ---
 
-But you can deeply convert using both Object.freeze and any of the libraries
-
     const x = Object.freeze({ a: 1, b: 2 });
     x.a = 5;
     console.log(x); // { a: 1, b: 2}
@@ -271,6 +269,8 @@ But you can deeply convert using both Object.freeze and any of the libraries
     const y = Object.freeze({ a: 1, b: 2, c: [1, 2, 3]})
     y.c[0] = 5;
     console.log(y); // { a: 1, b: 2, c: [5, 2, 3]}
+
+> * But you can deeply convert using both Object.freeze and any of the immutable libraries
 
 # Why Immutability Is A Big Deal
 
@@ -280,8 +280,9 @@ But you can deeply convert using both Object.freeze and any of the libraries
 
 > * How to tell if x changed?
 > * If I modify x[2], the reference to x doesn't change, but the value there has
-> * In order to tell that x changed, we can't just see if the reference has changed.
-> * We need to check all of the values.
+> * In order to tell if x changed:
+    * we can't just see if the reference has changed.
+    * We need to check all of the values.
 
 ## With an immutable array
 
@@ -298,7 +299,7 @@ But you can deeply convert using both Object.freeze and any of the libraries
 
 > * If the reference is equal, no need to render.
 > * You are guaranteed the data is the same.
-> * Memoization
+> * Also big benefits for memoization
 
 # So, how to write more functional code?
 
@@ -318,8 +319,8 @@ But you can deeply convert using both Object.freeze and any of the libraries
 
 ### Places I Stole Ideas From
 
-> * ["Side Cause" blog post](http://blog.jenkster.com/2015/12/what-is-functional-programming.html)
-> * [Rich Hickey: Simple Made Easy](http://www.infoq.com/presentations/Simple-Made-Easy)
-> * [Rich Hickey: Are We There Yet?](http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
-> * [React Conf 2015: Immutable.js](https://www.youtube.com/watch?v=I7IdS-PbEgI)
-> * [Excellent HN Comment](https://news.ycombinator.com/item?id=8108394)
+* ["Side Cause" blog post](http://blog.jenkster.com/2015/12/what-is-functional-programming.html)
+* [Rich Hickey: Simple Made Easy](http://www.infoq.com/presentations/Simple-Made-Easy)
+* [Rich Hickey: Are We There Yet?](http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
+* [React Conf 2015: Immutable.js](https://www.youtube.com/watch?v=I7IdS-PbEgI)
+* [Excellent HN Comment](https://news.ycombinator.com/item?id=8108394)
