@@ -31,10 +31,10 @@
 
 ## pure func·tion
 
-> * No *side-effects*
-> * No *side-causes*
-> * *Referential transparency*
-> * Saves us from the complexity icebergy
+* No *side-effects*
+* No *side-causes*
+* *Referential transparency*
+* Saves us from the complexity iceberg
 
 ## Side-Effect
 
@@ -43,6 +43,7 @@
 > * What does it do that isn't part of the return value?
 > * Side effects are necessary to **do** things
 > * ...but dangerous when unintentional
+> * Obey SRP!
 
 >> by "hidden output" we mean that a function does something besides provide a new return value. Maybe it changes some global state.
 >> When to side effect: when you are doing it deliberately. If you are returning a value AND side effecting, you're not following SRP. If you're going to side effect, do it intentionally.
@@ -52,8 +53,8 @@
 ## Side-Cause
 
 > * Hidden input
-> * "A function with side-causes has undocumented assumptions about what *external* factors it depends on."
 > * What does it need that isn't in the argument list?
+> * "A function with side-causes has undocumented assumptions about what *external* factors it depends on."
 
 ## Referential Transparency
 
@@ -217,12 +218,6 @@ Part of ES2017
 
 # Immutability
 
-##
-
-> Mutable state is to software as movable parts are to hardware. There are a group of problems that cannot be solved without it, but introducing it makes everything a bit more fragile.
-
-[- Hacker News comment](https://news.ycombinator.com/item?id=11395837)
-
 ## Benefits of immutability
 
 > * "Like mutable data, but with one fewer feature: you can't edit it."
@@ -270,7 +265,7 @@ Part of ES2017
     y.c[0] = 5;
     console.log(y); // { a: 1, b: 2, c: [5, 2, 3]}
 
-> * But you can deeply convert using both Object.freeze and any of the immutable libraries
+> * But you can deeply convert using both Object.freeze ([deepFreeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#Examples)) and any of the immutable libraries.
 
 # Why Immutability Is A Big Deal
 
