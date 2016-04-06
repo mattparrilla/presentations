@@ -84,22 +84,8 @@
 <aside class="notes">
 <p>by &quot;hidden output&quot; we mean that a function does something besides provide a new return value. Maybe it changes some global state. When to side effect: when you are doing it deliberately. If you are returning a value AND side effecting, you&apos;re not following SRP. If you&apos;re going to side effect, do it intentionally. ASK: what are some examples of side effects that you might deliberately cause? answers: print to a screen, write to file system, etc.</p>
 </aside>
-</section><section id="side-cause" class="slide level2">
-<h1>Side-Cause</h1>
-<ul>
-<li class="fragment">Hidden input</li>
-<li class="fragment">What does it need that isn&apos;t in the argument list?</li>
-<li class="fragment">&quot;A function with side-causes has undocumented assumptions about what <em>external</em> factors it depends on.&quot;</li>
-</ul>
-</section><section id="referential-transparency" class="slide level2">
-<h1>Referential Transparency</h1>
-<p>A pure function can be replaced by the value it returns.</p>
-<aside class="notes">
-<p>referential transparency means that functional programs can be analyzed and evaluated as mathematics, and in true functional languages they can be optimized at compile time.</p>
-</aside>
-</section></section>
-<section><section id="now-some-examples" class="titleslide slide level1"><h1>Now, some examples!</h1></section><section id="a-side-effect" class="slide level2">
-<h1>A Side Effect</h1>
+</section><section id="an-example" class="slide level2">
+<h1>An Example</h1>
 <pre><code>const myGlobalArray = [1, 1, 1];
 
 function someFunction(anArray) {
@@ -111,8 +97,31 @@ function someFunction(anArray) {
 // elsewhere...
 const someValue = someFunction(myGlobalArray);
 const sum = myGlobalArray.reduce((a, b) =&gt; a + b); // 2!</code></pre>
-</section><section id="another" class="slide level2">
-<h1>Another</h1>
+</section><section id="side-cause" class="slide level2">
+<h1>Side-Cause</h1>
+<ul>
+<li class="fragment">Hidden input</li>
+<li class="fragment">What does it need that isn&apos;t in the argument list?</li>
+<li class="fragment">&quot;A function with side-causes has undocumented assumptions about what <em>external</em> factors it depends on.&quot;</li>
+</ul>
+</section><section id="an-example-1" class="slide level2">
+<h1>An Example</h1>
+<pre><code>import moment from &apos;moment&apos;;
+
+function getTodaysVisits(visits) {
+    const today = moment().format(&apos;YYYY-MM-DD&apos;);
+
+    return visits[today];
+}</code></pre>
+</section><section id="referential-transparency" class="slide level2">
+<h1>Referential Transparency</h1>
+<p>A pure function can be replaced by the value it returns.</p>
+<aside class="notes">
+<p>referential transparency means that functional programs can be analyzed and evaluated as mathematics, and in true functional languages they can be optimized at compile time.</p>
+</aside>
+</section></section>
+<section><section id="some-more-examples" class="titleslide slide level1"><h1>Some More Examples</h1></section><section id="another-side-effect" class="slide level2">
+<h1>Another Side Effect</h1>
 <pre><code>function doStuff(anObject) {
     var keys = Object.keys(anObject);
     cleanKeys(keys);
@@ -172,15 +181,6 @@ console.log(x); // [1, 1, 2, 3]</code></pre>
 </tbody>
 </table>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">MDN Docs</a></p>
-</section><section id="a-side-cause" class="slide level2">
-<h1>A Side-Cause</h1>
-<pre><code>import moment from &apos;moment&apos;;
-
-function getTodaysVisits(visits) {
-    const today = moment().format(&apos;YYYY-MM-DD&apos;);
-
-    return visits[today];
-}</code></pre>
 </section><section id="is-this-pure" class="slide level2">
 <h1>Is this pure?</h1>
 <pre><code>import moment from &apos;moment&apos;;

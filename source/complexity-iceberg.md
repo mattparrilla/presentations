@@ -50,21 +50,7 @@
 >> ASK: what are some examples of side effects that you might deliberately cause?
 >> answers: print to a screen, write to file system, etc.
 
-## Side-Cause
-
-> * Hidden input
-> * What does it need that isn't in the argument list?
-> * "A function with side-causes has undocumented assumptions about what *external* factors it depends on."
-
-## Referential Transparency
-
-A pure function can be replaced by the value it returns.
-
->> referential transparency means that functional programs can be analyzed and evaluated as mathematics, and in true functional languages they can be optimized at compile time.
-
-# Now, some examples!
-
-## A Side Effect
+## An Example
 
     const myGlobalArray = [1, 1, 1];
 
@@ -78,7 +64,31 @@ A pure function can be replaced by the value it returns.
     const someValue = someFunction(myGlobalArray);
     const sum = myGlobalArray.reduce((a, b) => a + b); // 2!
 
-## Another
+## Side-Cause
+
+> * Hidden input
+> * What does it need that isn't in the argument list?
+> * "A function with side-causes has undocumented assumptions about what *external* factors it depends on."
+
+## An Example
+
+    import moment from 'moment';
+
+    function getTodaysVisits(visits) {
+        const today = moment().format('YYYY-MM-DD');
+
+        return visits[today];
+    }
+
+## Referential Transparency
+
+A pure function can be replaced by the value it returns.
+
+>> referential transparency means that functional programs can be analyzed and evaluated as mathematics, and in true functional languages they can be optimized at compile time.
+
+# Some More Examples
+
+## Another Side Effect
 
     function doStuff(anObject) {
         var keys = Object.keys(anObject);
@@ -116,16 +126,6 @@ Some array methods can cause unexpected side-effects if you don't know that they
 | unshift | reduce |
 
 [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods)
-
-## A Side-Cause
-
-    import moment from 'moment';
-
-    function getTodaysVisits(visits) {
-        const today = moment().format('YYYY-MM-DD');
-
-        return visits[today];
-    }
 
 
 ## Is this pure?
