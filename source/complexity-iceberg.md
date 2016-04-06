@@ -52,17 +52,18 @@
 
 ## An Example
 
-    const myGlobalArray = [1, 1, 1];
+    const hourlyVisits = [100, 200, 300];
 
-    function someFunction(anArray) {
-        const lastItem = anArray.pop();
-        // do some stuff
-        return resultOfStuff;
+    function hourlyVisitRate(dailyVisits) {
+        const sum = dailyVisits.reduce((total, hourly) => total + hourly);
+        const hourly = dailyVisits.pop();
+
+        return hourly / sum;
     };
 
     // elsewhere...
-    const someValue = someFunction(myGlobalArray);
-    const sum = myGlobalArray.reduce((a, b) => a + b); // 2!
+    const recentVisitsPercentage = hourlyVisitRate(hourlyVisits);
+    const peakVisits = Math.max(...hourlyVisits); // 200!
 
 ## Side-Cause
 

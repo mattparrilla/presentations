@@ -86,17 +86,18 @@
 </aside>
 </section><section id="an-example" class="slide level2">
 <h1>An Example</h1>
-<pre><code>const myGlobalArray = [1, 1, 1];
+<pre><code>const hourlyVisits = [100, 200, 300];
 
-function someFunction(anArray) {
-    const lastItem = anArray.pop();
-    // do some stuff
-    return resultOfStuff;
+function hourlyVisitRate(dailyVisits) {
+    const sum = dailyVisits.reduce((total, hourly) =&gt; total + hourly);
+    const hourly = dailyVisits.pop();
+
+    return hourly / sum;
 };
 
 // elsewhere...
-const someValue = someFunction(myGlobalArray);
-const sum = myGlobalArray.reduce((a, b) =&gt; a + b); // 2!</code></pre>
+const recentVisitsPercentage = hourlyVisitRate(hourlyVisits);
+const peakVisits = Math.max(...hourlyVisits); // 200!</code></pre>
 </section><section id="side-cause" class="slide level2">
 <h1>Side-Cause</h1>
 <ul>
