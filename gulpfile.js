@@ -49,7 +49,7 @@ function compile(done) {
     return gulp.src('source/*.md')
         .pipe(through.obj(pandoc))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./present'))
+        .pipe(gulp.dest('./'))
         .pipe(debug({title: 'Compiled'}));
 }
 
