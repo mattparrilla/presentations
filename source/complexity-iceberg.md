@@ -11,10 +11,10 @@
 ## What is Functional Programming?
 
 > * A paradigm
-> * Seeks to eliminate *side-effects* when possible
 > * Declarative as opposed to imperative in style
 > * Rooted in mathematics (Lambda Calculus)
 > * Favors composability
+> * Seeks to eliminate *side-effects* when possible
 > * Write pure functions
 
 >> it's a WAY to write code, you're likely already doing some of the things Ben & I will be talking about, even if you don't know it
