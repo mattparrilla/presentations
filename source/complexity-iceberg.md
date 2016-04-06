@@ -41,7 +41,7 @@
 > * Hidden output
 > * An observable interaction with the outside world
 > * What does it do that isn't part of the return value?
-> * Necessary to **do** things
+> * Side effects are necessary to **do** things
 > * ...but dangerous when unintentional
 
 >> by "hidden output" we mean that a function does something besides provide a new return value. Maybe it changes some global state.
