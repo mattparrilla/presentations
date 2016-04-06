@@ -28,6 +28,11 @@ function pandoc(file, enc, cb) {
             .last()
             .after('<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet" />');
 
+
+        // super brittle grossness, just making it work
+        var filename = file.history[0].split('source/')[1].split('.md')[0];
+        $('body').addClass(filename);
+
         // Magic speaker notes.
         $('blockquote > blockquote').each(function(){
             var content = $(this).html();
@@ -44,7 +49,7 @@ function compile(done) {
     return gulp.src('source/*.md')
         .pipe(through.obj(pandoc))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./present'))
         .pipe(debug({title: 'Compiled'}));
 }
 

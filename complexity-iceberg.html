@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Beyond The Fat Arrow: Functional Programming in Javascript">
+  <title>iceberg</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="css/custom-night.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet">
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body class="complexity-iceberg">
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title"><img src="http://openlab.ncl.ac.uk/hci-digitalcivics-2015/files/2015/11/glacier_iceberg_under_water.jpg" alt="iceberg"></h1>
+    <h2 class="author">Beyond The Fat Arrow: Functional Programming in Javascript</h2>
+    <h3 class="date">Matt Parrilla</h3>
+</section>
+
+<section><section id="my-background" class="titleslide slide level1"><h1>My background</h1></section></section>
+<section><section id="standard-disclaimer" class="titleslide slide level1"><h1>standard disclaimer</h1></section></section>
+<section><section id="what-is-functional-programming" class="titleslide slide level1"><h1>What is Functional Programming?</h1></section></section>
+<section><section id="pure-functions" class="titleslide slide level1"><h1>pure functions</h1></section></section>
+<section><section id="side-effects" class="titleslide slide level1"><h1>side effects</h1></section></section>
+<section><section id="side-cause" class="titleslide slide level1"><h1>side cause</h1></section></section>
+<section><section id="referential-transparency" class="titleslide slide level1"><h1>referential transparency</h1></section></section>
+<section><section id="examples-of-side-effect" class="titleslide slide level1"><h1>examples of side effect</h1></section></section>
+<section><section id="examples-of-side-cause" class="titleslide slide level1"><h1>examples of side cause</h1></section></section>
+<section><section id="is-this-pure" class="titleslide slide level1"><h1>is this pure?</h1></section></section>
+<section><section id="why-write-pure-functions" class="titleslide slide level1"><h1>why write pure functions?</h1></section></section>
+<section><section id="how-can-we-write-pure-functions" class="titleslide slide level1"><h1>how can we write pure functions?</h1></section></section>
+<section><section id="dont-mutate-data-by-convention" class="titleslide slide level1"><h1>don&apos;t mutate data by convention</h1></section></section>
+<section><section id="immutability" class="titleslide slide level1"><h1>immutability</h1></section></section>
+<section><section id="immutability-2-ways" class="titleslide slide level1"><h1>Immutability 2 Ways</h1></section><section id="object.freeze-example" class="slide level2">
+<h1>Object.freeze example</h1>
+<ul>
+<li>shallowly immutable</li>
+<li>often good enough</li>
+</ul>
+<p>// example of it working // example of it not working</p>
+</section><section id="external-library-example" class="slide level2">
+<h1>external library example</h1>
+</section></section>
+<section><section id="benefits-of-immutability" class="titleslide slide level1"><h1>benefits of immutability</h1></section></section>
+<section><section id="costs-of-immutability" class="titleslide slide level1"><h1>costs of immutability</h1></section></section>
+<section><section id="immutable.js-vs.-seamless-immutable" class="titleslide slide level1"><h1>Immutable.js vs. seamless-immutable</h1></section><section id="immutable.js" class="slide level2">
+<h1>Immutable.js</h1>
+<ul>
+<li>12k stars</li>
+<li>Persistence</li>
+<li>Lazy Evaluation</li>
+</ul>
+</section><section id="seamless-immutable" class="slide level2">
+<h1>seamless-immutable</h1>
+<ul>
+<li>1.6k stars</li>
+<li>Backwards compatible with vanilla arrays and objects</li>
+</ul>
+</section></section>
+<section><section id="persistence" class="titleslide slide level1"><h1>Persistence</h1></section><section id="example-of-persistence" class="slide level2">
+<h1>example of persistence</h1>
+<p>compare branches, when the tree has changed. if no persistence, its a new branch. If persistence, can compare the branches. This is a big deal for redux, for example.</p>
+</section></section>
+<section><section id="places-i-stole-ideas-from" class="titleslide slide level1"><h1>Places I Stole Ideas From</h1></section></section>
+<section><section id="thanks" class="titleslide slide level1"><h1>Thanks!</h1></section></section>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/js/reveal.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,         // Display controls in the bottom right corner
+        progress: true,         // Display a presentation progress bar
+        history: true,          // Push each slide change to the browser history
+        center: true,                       // Vertical centering of slides
+        maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
+        slideNumber: false,                // Display the page number of the current slide
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.17/socket.io.js', async: true }, { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/notes-server/client.js', async: true }]});
+    </script>
+    </body>
+</html>
