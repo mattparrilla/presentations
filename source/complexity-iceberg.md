@@ -1,5 +1,6 @@
 % Beyond The Fat Arrow
 % Functional Programming in Javascript
+% Part 1: Matt Parrilla
 
 ![The Complexity Iceberg](http://openlab.ncl.ac.uk/hci-digitalcivics-2015/files/2015/11/glacier_iceberg_under_water.jpg)
 
