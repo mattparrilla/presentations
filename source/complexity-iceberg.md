@@ -1,7 +1,7 @@
 % Beyond The Fat Arrow
 % Functional Programming in Javascript
 
-![The Complexity Iceberg](http://openlab.ncl.ac.uk/hci-digitalcivics-2015/files/2015/11/glacier_iceberg_under_water.jpg)
+![The Complexity Iceberg](https://www.omegafi.com/apps/home/wp-content/uploads/2014/08/glacier_iceberg_under_water.jpg)
 
 ## Standard Disclaimer
 
