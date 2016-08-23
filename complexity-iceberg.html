@@ -7,20 +7,18 @@
   <title>Beyond The Fat Arrow</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/reveal.css">
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/theme/black.css" id="theme">
   <link rel="stylesheet" href="css/custom-night.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet">
-  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <!-- Printing and PDF exports -->
   <script>
-    if( window.location.search.match( /print-pdf/gi ) ) {
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
-    }
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
@@ -31,9 +29,8 @@
     <div class="slides">
 
 <section>
-    <h1 class="title">Beyond The Fat Arrow</h1>
-    <h2 class="author">Functional Programming in Javascript</h2>
-    <h3 class="date"></h3>
+  <h1 class="title">Beyond The Fat Arrow</h1>
+  <h2 class="author">Functional Programming in Javascript</h2>
 </section>
 
 <section class="slide level2">
@@ -146,38 +143,38 @@ console.log(x); // [1, 1, 2, 3]</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Mutator Methods</th>
-<th style="text-align: left;">Pure Methods</th>
+<th>Mutator Methods</th>
+<th>Pure Methods</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">pop</td>
-<td style="text-align: left;">concat</td>
+<td>pop</td>
+<td>concat</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">push</td>
-<td style="text-align: left;">includes</td>
+<td>push</td>
+<td>includes</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">reverse</td>
-<td style="text-align: left;">join</td>
+<td>reverse</td>
+<td>join</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">shift</td>
-<td style="text-align: left;">slice</td>
+<td>shift</td>
+<td>slice</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">sort</td>
-<td style="text-align: left;">map</td>
+<td>sort</td>
+<td>map</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">splice</td>
-<td style="text-align: left;">filter</td>
+<td>splice</td>
+<td>filter</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">unshift</td>
-<td style="text-align: left;">reduce</td>
+<td>unshift</td>
+<td>reduce</td>
 </tr>
 </tbody>
 </table>
@@ -200,7 +197,7 @@ getYearAgoVisits(visits, today);</code></pre>
 </ul>
 </section></section>
 <section><section id="why-write-pure-functions" class="titleslide slide level1"><h1>Why write pure functions?</h1></section><section id="section" class="slide level2">
-<h1><img src="http://orig10.deviantart.net/e188/f/2011/007/e/e/jack_and_rose_from_titanic_by_kaorixluvsxnachoes88-d36o22o.jpg" alt=""></h1>
+<h1><img src="http://orig10.deviantart.net/e188/f/2011/007/e/e/jack_and_rose_from_titanic_by_kaorixluvsxnachoes88-d36o22o.jpg"></h1>
 <ul>
 <li class="fragment">Because we want to be happy!</li>
 </ul>
@@ -284,11 +281,9 @@ const olderMatt = Object.assign(
 </section><section id="immutability-2-ways" class="slide level2">
 <h1>Immutability 2 Ways</h1>
 <ul>
-<li class="fragment">External Libraries
-<ul>
+<li class="fragment">External Libraries</li>
 <li class="fragment">Immutable.js</li>
 <li class="fragment">seamless-immutable</li>
-</ul></li>
 <li class="fragment">Object.freeze</li>
 </ul>
 <aside class="notes">
@@ -334,11 +329,9 @@ console.log(y); // { a: 1, b: 2, c: [5, 2, 3]}</code></pre>
 <ul>
 <li class="fragment">How to tell if x changed?</li>
 <li class="fragment">If I modify x[2], the reference to x doesn&apos;t change, but the value there has</li>
-<li class="fragment">In order to tell if x changed:
-<ul>
+<li class="fragment">In order to tell if x changed:</li>
 <li class="fragment">we can&apos;t just see if the reference has changed.</li>
 <li class="fragment">We need to check all of the values.</li>
-</ul></li>
 </ul>
 </section><section id="with-an-immutable-array" class="slide level2">
 <h1>With an immutable array</h1>
@@ -386,26 +379,22 @@ console.log(y); // { a: 1, b: 2, c: [5, 2, 3]}</code></pre>
     </div>
   </div>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/head.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/js/reveal.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
 
   <script>
 
-      // Full list of configuration options available here:
+      // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        controls: true,         // Display controls in the bottom right corner
-        progress: true,         // Display a presentation progress bar
-        history: true,          // Push each slide change to the browser history
-        center: true,                       // Vertical centering of slides
-        maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
-        slideNumber: false,                // Display the page number of the current slide
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-        // Optional libraries used to extend on reveal.js
-        dependencies: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.17/socket.io.js', async: true }, { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/notes-server/client.js', async: true }]});
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+        ]
+      });
     </script>
     </body>
 </html>
