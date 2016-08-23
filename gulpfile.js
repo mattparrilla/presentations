@@ -12,7 +12,6 @@ var presentation = 'gulp';
 
 function pandoc(file, enc, cb) {
     child_process.exec('pandoc -t revealjs -s '+file.path+' --css css/custom-night.css --slide-level 2', function(error, stdout, stderr){
-
         // Use CDN for reveal.js.
         stdout = stdout.replace(new RegExp('reveal.js/', 'g'), 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/');
 
