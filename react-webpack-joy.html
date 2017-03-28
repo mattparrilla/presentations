@@ -7,20 +7,18 @@
   <title>React + Flux + Webpack =</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/reveal.css">
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/theme/black.css" id="theme">
   <link rel="stylesheet" href="css/custom-night.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/railscasts.min.css" rel="stylesheet">
-  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <!-- Printing and PDF exports -->
   <script>
-    if( window.location.search.match( /print-pdf/gi ) ) {
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
-    }
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
@@ -31,9 +29,8 @@
     <div class="slides">
 
 <section>
-    <h1 class="title">React + Flux + Webpack =</h1>
-    <h2 class="author"><img src="http://i.imgur.com/1dHHZw4.gif" alt=""></h2>
-    <h3 class="date"></h3>
+  <h1 class="title">React + Flux + Webpack =</h1>
+  <h2 class="author"><img src="http://i.imgur.com/1dHHZw4.gif"></h2>
 </section>
 
 <section><section id="what-is-react" class="titleslide slide level1"><h1>What is React?</h1></section><section id="a-library-for-creating-user-interfaces" class="slide level2">
@@ -42,7 +39,7 @@
 </section><section id="what-is-it-not" class="slide level2">
 <h1>What is it not?</h1>
 <figure>
-<img src="http://thesalesblog.com/wp-content/uploads/2010/06/Kitchen-Sink.jpg" alt="">
+<img src="http://thesalesblog.com/wp-content/uploads/2010/06/Kitchen-Sink.jpg">
 </figure>
 </section><section id="byo" class="slide level2">
 <h1>BYO</h1>
@@ -54,7 +51,7 @@
 </section><section id="how-does-it-work" class="slide level2">
 <h1>How does it work?</h1>
 <figure>
-<img src="http://i.imgur.com/BYK8D6u.png" alt="">
+<img src="http://i.imgur.com/BYK8D6u.png">
 </figure>
 </section><section id="but-what-about-the-m-and-c" class="slide level2">
 <h1>But what about the &quot;M&quot; and &quot;C&quot;?</h1>
@@ -62,7 +59,7 @@
 <section><section id="what-the-flux" class="titleslide slide level1"><h1>What the Flux?</h1></section><section id="all-about-managing-state" class="slide level2">
 <h1>All about managing state</h1>
 </section><section id="section" class="slide level2">
-<h1><img src="https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png" alt=""></h1>
+<h1><img src="https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png"></h1>
 <ul>
 <li class="fragment">All application state lives in the store</li>
 <li class="fragment">One-way data flow (no two-way binding)</li>
@@ -158,26 +155,22 @@
     </div>
   </div>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/head.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/js/reveal.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
 
   <script>
 
-      // Full list of configuration options available here:
+      // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        controls: true,         // Display controls in the bottom right corner
-        progress: true,         // Display a presentation progress bar
-        history: true,          // Push each slide change to the browser history
-        center: true,                       // Vertical centering of slides
-        maxScale: 1.5,                  // Bounds for smallest/largest possible content scale
-        slideNumber: false,                // Display the page number of the current slide
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-        // Optional libraries used to extend on reveal.js
-        dependencies: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.17/socket.io.js', async: true }, { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/notes-server/client.js', async: true }]});
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+        ]
+      });
     </script>
     </body>
 </html>
