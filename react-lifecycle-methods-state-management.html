@@ -20,6 +20,33 @@
     link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
+  <style type="text/css">
+      .reveal section .agenda img {
+        background: rgba(0, 0, 0, 0.0);
+        border: 0px;
+        height: 50px;
+        width: auto;
+      }
+      .reveal section .agenda .talk-done {
+        color: green;
+        vertical-align: middle;
+      }
+      .reveal section .agenda .talk-current {
+        color: white;
+        vertical-align: middle;
+      }
+      .reveal section .agenda .talk-title {
+        font-size: 0.7em;
+        vertical-align: middle;
+      }
+      .reveal section .agenda .tech-logo {
+        text-align: center;
+        vertical-align: middle;
+      }
+      .left-align {
+        text-align: left;
+      }
+  </style>
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
   <![endif]-->
@@ -33,44 +60,80 @@
   <h2 class="author">Level Up 2</h2>
 </section>
 
+        <section class="left-align">
+          <table class="agenda">
+            <tr>
+              <td class="talk-done">✓</td>
+              <td class="tech-logo"><img src="imgs/node.png" /></td>
+              <td class="talk-title">Getting Started</td>
+            </tr>
+            <tr>
+              <td class="talk-done">✓</td>
+              <td class="tech-logo"><img src="imgs/es6.png" /></td>
+              <td class="talk-title"><s>Tomorrow’s</s> Yesterday’s Javascript, Today</td>
+            </tr>
+            <tr>
+              <td class="talk-done">✓</td>
+              <td class="tech-logo"><img src="imgs/react.png" /></td>
+              <td class="talk-title">Getting Started with React</td>
+            </tr>
+            <tr>
+              <td class="talk-done">✓</td>
+              <td class="tech-logo"><img src="imgs/tracksuit.png" /></td>
+              <td class="talk-title">Sweatin’ It Out With Tracksuit</td>
+            </tr>
+            <tr>
+              <td class="talk-current">➡</td>
+              <td class="tech-logo"><img src="imgs/react.png" /></td>
+              <td class="talk-title">State Management and Lifecycle Methods in React</td>
+            </tr>
+            <tr>
+              <td class=""></td>
+              <td class="tech-logo"><img src="imgs/officehours.jpg" /></td>
+              <td class="talk-title">Office Hours</td>
+            </tr>
+          </table>
+        </section>
+
 <section id="you-are-here" class="slide level2">
 <h1>You Are Here</h1>
-<p>Link to tag</p>
+<p><a href="https://ghe.coxautoinc.com/Jonathan-Hoguet/hatchery/tree/lifecycle-methods-and-state-management">Hatchery: Lifecycle Methods & State Management Code</a></p>
 </section>
 <section class="slide level2">
 
-<h3 id="documentation">Documentation</h3>
-<p><a href="https://facebook.github.io/react/docs/state-and-lifecycle.html">State and Lifecycle</a></p>
+<h3 id="helpful-documentation">Helpful Documentation</h3>
+<ul>
+<li><a href="https://facebook.github.io/react/docs/state-and-lifecycle.html">State and Lifecycle Overview</a></li>
+<li><a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle">Component Lifecycle</a></li>
+<li><a href="https://facebook.github.io/react/docs/lifting-state-up.html">State Managment In React</a></li>
+</ul>
 </section>
-<section><section id="lifecycle-methods" class="titleslide slide level1"><h1>Lifecycle Methods</h1></section><section class="slide level2">
+<section><section id="lifecycle-methods" class="titleslide slide level1"><h1>Lifecycle Methods</h1></section><section id="in-hatchery-app" class="slide level2">
+<h1>In Hatchery App</h1>
+<pre><code>class HatcheryContainer extends Component {
+    constructor() {
+        // initialize state
+    }
 
-<h3 id="documentation-1">Documentation</h3>
-<p><a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle">Component Lifecycle</a></p>
-</section><section id="mount" class="slide level2">
-<h1>mount</h1>
-<p>happens once on initialization</p>
+    componentWillMount() {
+        // make network request
+        // set state
+    }
+
+    render() {
+        // render my stuff
+    }
+}</code></pre>
+</section><section id="the-lifecycle" class="slide level2">
+<h1>The Lifecycle</h1>
 <ul>
-<li class="fragment">constructor()</li>
-<li class="fragment">componentWillMount()</li>
-<li class="fragment">render()</li>
-<li class="fragment">componentDidMount()</li>
+<li class="fragment">mount</li>
+<li class="fragment">update</li>
+<li class="fragment">unmount</li>
 </ul>
-</section><section id="update" class="slide level2">
-<h1>update</h1>
-<p>can happen many times</p>
-<ul>
-<li class="fragment">componentWillReceiveProps()</li>
-<li class="fragment">shouldComponentUpdate()</li>
-<li class="fragment">componentWillUpdate()</li>
-<li class="fragment">render()</li>
-<li class="fragment">componentDidUpdate()</li>
-</ul>
-</section><section id="unmount" class="slide level2">
-<h1>unmount</h1>
-<p>happens once prior to component being removed from DOM</p>
-<ul>
-<li class="fragment">componentWillUnmount()</li>
-</ul>
+<aside class="notes">
+<p>mount happens once on initialization update happens many times unmount happens when component exits</p>
+</aside>
 </section><section class="slide level2">
 
 <h3 id="when-do-components-update">When do components update?</h3>
@@ -78,54 +141,94 @@
 <li class="fragment">new props from parent</li>
 <li class="fragment">the state changes</li>
 </ul>
-</section><section class="slide level2">
-
-<h3 id="what-to-do-with-lifecycle-methods">What to do with lifecycle methods?</h3>
-<ul>
-<li class="fragment">initialize state - <strong>constructor</strong></li>
-<li class="fragment">make network requests, update state - <strong>componentDidUpdate</strong></li>
-<li class="fragment">interact with the DOM (only if you must) - <strong>componentDidMount, componentDidUpdate</strong></li>
-<li class="fragment">prevent an unecessary render - <strong>shouldComponentUpdate</strong></li>
-<li class="fragment">clean up event listeners, etc - <strong>componentWillUnmount</strong></li>
-</ul>
 </section></section>
 <section><section id="state-management" class="titleslide slide level1"><h1>State Management</h1></section><section class="slide level2">
 
-<h3 id="documentation-2">Documentation</h3>
-<p><a href="https://facebook.github.io/react/docs/lifting-state-up.html">State Managment In React</a></p>
-</section><section id="what-is-state" class="slide level2">
-<h1>What is state?</h1>
+<h3 id="what-is-state">What is state?</h3>
 <ul>
-<li class="fragment">If you think of your application as a function, state are your inputs.</li>
-<li class="fragment">The minimum amount of information needed to render your app</li>
+<li class="fragment">If you think of your application as a function, state is your input.</li>
+<li class="fragment">It is minimum amount of information needed to render your app.</li>
 </ul>
 </section><section class="slide level2">
 
-<h3 id="in-react-data-flows-down">In React, Data Flows Down</h3>
-<p>Example</p>
-</section><section id="how-to-manage-state" class="slide level2">
-<h1>How to manage state</h1>
+<h3 id="presentational-vs-container-components">Presentational vs Container Components</h3>
+</section><section class="slide level2">
+
+<h3 id="presentational-components">Presentational Components</h3>
+<pre><code>const Counter = ({ count, incrementCount }) =&gt; (
+    &lt;div&gt;
+        &lt;button onClick={incrementCount} /&gt;
+        &lt;span&gt;{ count }&lt;/span&gt;
+    &lt;/div&gt;
+);</code></pre>
 <ul>
-<li class="fragment">Push it as far down as you can</li>
-<li class="fragment">Only when a component elsewhere in the component hierarchy needs to know about a piece of state do you share it with that component.</li>
-<li class="fragment">To do that, hoist it up to closest ancestor component</li>
+<li class="fragment">Contain no &quot;state&quot;</li>
+<li class="fragment">Typically functional components</li>
+<li class="fragment">Just your &quot;view&quot;</li>
 </ul>
 </section><section class="slide level2">
 
-<p>Show diagram</p>
+<h3 id="container-components">Container Components</h3>
+<pre><code>class CounterContainer extends Component {
+    constructor() {
+        super();
+        this.state = { count: 0 };
+        this.incrementCount = this.setState(({ count }) =&gt; ({ count: count + 1 }));
+    }
+    render() {
+        &lt;Counter count={this.state.count} incrementCount={this.incrementCount} /&gt;
+    }
+}</code></pre>
+<ul>
+<li class="fragment">Manage your state here!</li>
+</ul>
 </section><section class="slide level2">
 
+<h3 id="where-should-state-live">Where Should State Live?</h3>
+<p>As low as it can go!</p>
 </section></section>
-<section><section id="when-you-might-need-a-state-management-library" class="titleslide slide level1"><h1>When You Might Need A State Management Library</h1></section><section class="slide level2">
+<section><section id="now-what" class="titleslide slide level1"><h1>Now What?</h1></section><section class="slide level2">
 
-<h3 id="pros-and-cons-of-state-managment-libraries">Pros and Cons of State Managment Libraries</h3>
-<p>Pros: &gt; * can avoid state-heavy root component and avoid passing state down through the hierarchy (as props) &gt; * great developer tools &gt; * nice debugging &gt; * explicit</p>
-<p>Cons: &gt; * more indirection &gt; * more boilerplate &gt; * more <em>stuff</em></p>
+<h3 id="we-need-a-component-that">We need a component that:</h3>
+<ul>
+<li class="fragment">Connects <code>NewIdeaForm</code> to <code>HatcheryContainer</code></li>
+<li class="fragment">Shows a button to create a new idea</li>
+<li class="fragment">When you click the button, it is replaced by <code>NewIdeaForm</code></li>
+</ul>
+</section></section>
+<section><section id="bonus-when-you-might-need-a-state-management-library" class="titleslide slide level1"><h1>Bonus: When You <em>Might</em> Need A State Management Library</h1></section><section class="slide level2">
+
+<p class="left-align">When you have lots of components across the component hierarchy needing to know about the same pieces of application state.</p>
+</section><section class="slide level2">
+
+<h3 id="state-managment-libraries">State Managment Libraries</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>avoid heavy container components</td>
+<td>more boilerplate</td>
+</tr>
+<tr class="even">
+<td>great developer tools</td>
+<td>more <em>stuff</em></td>
+</tr>
+<tr class="odd">
+<td>nice debugging</td>
+<td>more indirection</td>
+</tr>
+</tbody>
+</table>
 </section><section class="slide level2">
 
 <h3 id="so-what-to-do">So What To Do?</h3>
-<p>Start by managing state in your components.</p>
-<p>When you find you&apos;re passing state down many levels and you&apos;ve got container components that know a little too much about the universe, consider using a library for some (but probably not all) of your state.</p>
+<p class="left-align">Start by managing state in your components.</p>
+<p class="left-align">When you find you&apos;re passing state down many levels and you&apos;ve got container components that know a little too much about the universe, consider using a library for some (but probably not all) of your state.</p>
 </section></section>
     </div>
   </div>
